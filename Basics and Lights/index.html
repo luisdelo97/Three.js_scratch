@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0;
+      }
+      canvas {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <title>Three.js</title>
+  </head>
+  <body>
+    <script src="three.js"></script>
+    <script>
+      const scene = new THREE.Scene();
+      /* cambiamos el color de fondo a gris
+       scene.background = new THREE.Color(0x666666);*/
+
+      /*  aspect ratio: window.innerWidth / window.innerHeight
+      near plane : 0.1
+      far plane : 1000
+      */
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+      /* se encarga de renderizar el contenido en el navegador,
+      alpha : true significa que vamos a permitir transparencias*/
+      const renderer = new THREE.WebGLRenderer({ alpha: true });
+      //el tamaño en donde el navegador va a renderizar
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      //habilitamos las sombras
+      renderer.shadowMap.enabled = true;
+      //adjuntamos el renderer en el body como un elemento hijo
+      document.body.appendChild(renderer.domElement);
+
+      // * ? CUBE
+      const geometry = new THREE.BoxGeometry();
+      // MeshStandardMaterial: mas completo que el MeshBasicMaterial
+      const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
+      const cube = new THREE.Mesh(geometry, material); // mesh: malla
+      cube.castShadow = true; //este cubo generara sombras
+      cube.position.set(1, 2, 1);
+      scene.add(cube);
+
+      // * LIGHT
+      const light = new THREE.DirectionalLight(0xffffff, 1, 10);
+      light.position.set(-1, 1, 1);
+      light.castShadow = true; // esta luz generara sombras
+      scene.add(light);
+
+      /*primer parametro sus dumensiones , segundo parametro numero de cuadrado que tendra dicha malla*/
+      // const grid = new THREE.GridHelper(100, 10);
+      // scene.add(grid);
+
+      // PLANE : colocamos el plano detras del cubo para que dibuje la sombra
+      const planeGeometry = new THREE.PlaneGeometry(20, 20, 32, 32);
+      const planeMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000 });
+      const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+      plane.receiveShadow = true; // recibe las sombras de la luz
+      plane.position.set(0, 0, 0);
+      scene.add(plane);
+
+      // ahora debemos posicionar la camara para que este observando al cubo, debemos desplazar la camara un poco por que tanto el cubo como la camara se encuantran en el 0,0,0
+
+      camera.position.z = 5;
+      camera.position.y = -3;
+      // camera.rotation.y = -10;
+      camera.rotation.x = 0.5;
+
+      // ahora vamos a declarar una funcion que se encargara de renderizar frame a frame todo lo que esta ocurriendo en nuestra escena
+
+      function animate() {
+        requestAnimationFrame(animate);
+        // le colocamos el += porque esto se ejecuta en bucle
+        // cube.rotation.x += 0.01;
+        // cube.rotation.y += 0.01;
+        renderer.render(scene, camera);
+      }
+
+      animate();
+    </script>
+  </body>
+</html>
