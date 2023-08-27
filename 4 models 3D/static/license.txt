@@ -1,0 +1,11 @@
+Model Information:
+* title:	Leet Skibidi Toilet
+* source:	https://sketchfab.com/3d-models/leet-skibidi-toilet-c7a495ea6d8447d4adf0dd829ec57819
+* author:	Special_ToiletCleaner (https://sketchfab.com/nailgalimzhanogoogle)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Leet Skibidi Toilet" (https://sketchfab.com/3d-models/leet-skibidi-toilet-c7a495ea6d8447d4adf0dd829ec57819) by Special_ToiletCleaner (https://sketchfab.com/nailgalimzhanogoogle) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
